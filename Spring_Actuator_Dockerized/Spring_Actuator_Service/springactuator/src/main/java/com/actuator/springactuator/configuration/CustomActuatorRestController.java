@@ -3,6 +3,7 @@ package com.actuator.springactuator.configuration;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.boot.actuate.endpoint.annotation.Selector;
 import org.springframework.boot.actuate.endpoint.web.annotation.RestControllerEndpoint;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,8 +38,8 @@ public class CustomActuatorRestController {
     }
 
     @PostMapping
-    public ResponseEntity<?> postMethod(@RequestBody String request) {
-        theList.add(request);
+    public ResponseEntity<?> postMethod(@RequestBody Request request) {
+        theList.add(request.getValue());
         return ResponseEntity.ok().body("This was post method");
     }
 
@@ -46,5 +47,17 @@ public class CustomActuatorRestController {
     public ResponseEntity<?> deleteMethod(@RequestParam String request) {
         theList.remove(request);
         return ResponseEntity.ok().body("This was delete method");
+    }
+
+    public static class Request {
+        public String value;
+
+        public String getValue() {
+            return this.value;
+        }
+
+        public void setValue(String value) {
+            this.value = value;
+        }
     }
 }

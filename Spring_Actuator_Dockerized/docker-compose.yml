@@ -1,0 +1,10 @@
+version: "3"
+services:
+  springactuator:
+    build:
+      context: ./Spring_Actuator_Service
+    # The port 8080 is exposed for normal controllers of service
+    # The port 8090 is exposed for actuator endpoints of service
+    ports:
+      - "8090:8090"
+      - "8080:8080"
