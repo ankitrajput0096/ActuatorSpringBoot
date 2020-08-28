@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class simpleActuatorController {
 
-    @RequestMapping(value = "/helloactuator", method=RequestMethod.GET, produces = "application/json")
+    @RequestMapping(
+            value = "/helloactuator",
+            method=RequestMethod.GET,
+            produces = "application/json")
     public ResponseEntity<?> helloActuator() {
         return ResponseEntity.ok().body("This is hello actuator endpoint");
     }
